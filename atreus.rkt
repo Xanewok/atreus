@@ -11,6 +11,11 @@
 
 (define column-offsets '(8 5 0 6 11 59 59 11 6 0 5 8))
 
+(define col-boundary (/ cols 2))
+(define (is-left col) (< col col-boundary))
+(define (is-left-boundary  col) (= col (- col-boundary 1)))
+(define (is-right-boundary col) (= col col-boundary))
+
 (define (switch-module x y rotation label net-pos net-neg)
   ;; TODO: set timestamps?
   `(module MX_FLIP (layer Front) (tedit 4FD81CDD) (tstamp 543EF801)
@@ -169,7 +174,7 @@
             (list 'add_net (last n)))))
 
 (define (switch row col)
-  (let* ([left? (< col 6)]
+  (let* ([left? (is-left col)]
          [rotation (if left? (- angle) angle)]
          [x (* (+ 1 col) spacing)]
          [y (+ (list-ref column-offsets col) (* spacing row))]
@@ -186,15 +191,15 @@
          [column-net `(net ,(+ net-col 5)
                        ,(string->symbol (format "N-col-~s" net-col)))]
          ;; rotate middle keys additional 90° after calculating position
-         [rotation (cond [(= 5 col) (- 90 angle)]
-                         [(= 6 col) (- 360 (- 90 angle))]
+         [rotation (cond [(is-left-boundary col) (- 90 angle)]
+                         [(is-right-boundary col) (- 360 (- 90 angle))]
                          [true rotation])])
     (switch-module x′ y′ rotation label
                    (if left? diode-net column-net)
                    (if left? column-net diode-net))))
 
 (define (diode row col)
-  (let* ([left? (< col 6)]
+  (let* ([left? (is-left col)]
          [rotation (if left? (- angle) angle)]
          [x (* (+ 1 col) spacing)]
          [y (+ (list-ref column-offsets col) (* spacing row))]
@@ -207,8 +212,8 @@
                 (* hypotenuse (sin Θ′)))]
          [label (format "D~a:~a" col row)]
          [diode (+ row (* col rows))]
-         [net-row (cond [(= col 5) 2]
-                        [(= col 6) 3]
+         [net-row (cond [(is-left-boundary col) 2]
+                        [(is-right-boundary col) 3]
                         [true row])])
     (diode-module x′ y′ rotation label
                   `(net ,(+ net-count diode)
@@ -219,7 +224,7 @@
 (define switches+diodes
   (for/list ([col (in-range cols)]
              #:when true
-             [row (if (or (= 5 col) (= 6 col))
+             [row (if (or (is-left-boundary col) (is-right-boundary col))
                       '(0) (in-range rows))])
     (list (switch row col) (diode row col))))
 
