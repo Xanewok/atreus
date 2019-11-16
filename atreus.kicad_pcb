@@ -152,6 +152,12 @@
 (net 55 N-diode-39)
 (net 56 N-diode-40)
 (net 57 N-diode-41)
+(net 58 N-diode-42)
+(net 59 N-diode-43)
+(net 60 N-diode-44)
+(net 61 N-diode-45)
+(net 62 N-diode-46)
+(net 63 N-diode-47)
 (net_class
  Default
  "This is the default net class."
@@ -218,7 +224,13 @@
  (add_net N-diode-38)
  (add_net N-diode-39)
  (add_net N-diode-40)
- (add_net N-diode-41))
+ (add_net N-diode-41)
+ (add_net N-diode-42)
+ (add_net N-diode-43)
+ (add_net N-diode-44)
+ (add_net N-diode-45)
+ (add_net N-diode-46)
+ (add_net N-diode-47))
 (module A_STAR (layer Front)
   (tedit 4FDC31C8)
   (tstamp 543EF800)
@@ -5455,7 +5467,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 37 N-diode-21))
+   (net 58 N-diode-42))
   (pad
    2
    thru_hole
@@ -5464,7 +5476,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 37 N-diode-21)))
+   (net 58 N-diode-42)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -5521,7 +5533,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 37 N-diode-21))
+   (net 58 N-diode-42))
   (pad
    99
    smd
@@ -5594,7 +5606,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 38 N-diode-22))
+   (net 59 N-diode-43))
   (pad
    2
    thru_hole
@@ -5603,7 +5615,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 38 N-diode-22)))
+   (net 59 N-diode-43)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -5660,7 +5672,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 38 N-diode-22))
+   (net 59 N-diode-43))
   (pad
    99
    smd
@@ -5733,7 +5745,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 39 N-diode-23))
+   (net 60 N-diode-44))
   (pad
    2
    thru_hole
@@ -5742,7 +5754,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 39 N-diode-23)))
+   (net 60 N-diode-44)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -5799,7 +5811,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 39 N-diode-23))
+   (net 60 N-diode-44))
   (pad
    99
    smd
@@ -5872,7 +5884,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 41 N-diode-25))
+   (net 61 N-diode-45))
   (pad
    2
    thru_hole
@@ -5881,7 +5893,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 41 N-diode-25)))
+   (net 61 N-diode-45)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -5938,7 +5950,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 41 N-diode-25))
+   (net 61 N-diode-45))
   (pad
    99
    smd
@@ -6011,7 +6023,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 42 N-diode-26))
+   (net 62 N-diode-46))
   (pad
    2
    thru_hole
@@ -6020,7 +6032,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 42 N-diode-26)))
+   (net 62 N-diode-46)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -6077,7 +6089,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 42 N-diode-26))
+   (net 62 N-diode-46))
   (pad
    99
    smd
@@ -6150,7 +6162,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 43 N-diode-27))
+   (net 63 N-diode-47))
   (pad
    2
    thru_hole
@@ -6159,7 +6171,7 @@
    (size 2.286 2.286)
    (drill 1.4986)
    (layers *.Cu *.SilkS *.Mask)
-   (net 43 N-diode-27)))
+   (net 63 N-diode-47)))
 (module DIODE (layer Front)
   (tedit 4E0F7A99)
   (tstamp 543EF854)
@@ -6216,7 +6228,7 @@
    (size 1.651 1.651)
    (drill 0.9906)
    (layers *.Cu *.SilkS *.Mask)
-   (net 43 N-diode-27))
+   (net 63 N-diode-47))
   (pad
    99
    smd

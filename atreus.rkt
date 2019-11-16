@@ -143,7 +143,9 @@
     (net 13 N-col-8)
     (net 14 N-col-9)
     (net 15 N-col-10)
-    ,@(for/list ([s (in-range 42)])
+    ; NOTE: For simplicity we define nets for the entire matrix, even if a
+    ; column might not have all the keys (the thumb ones)
+    ,@(for/list ([s (in-range (* rows cols))])
         (list 'net (+ 16 s) (string->symbol (format "N-diode-~s" s))))))
 
 (define (net-class nets)
@@ -169,11 +171,6 @@
          [y′ (+ (if left? y-offset (+ y-offset 42.885)) (* hypotenuse (sin Θ′)))]
          [label (format "SW~a:~a" col row)]
          [diode (+ row (* col 4))]
-         ;; if we try to number nets linearly, kicad segfaults; woo!
-         ;; so we re-use the nets we skipped with the missing col 5/6 diodes
-         [diode (cond [(> diode 44) (- diode 20)]
-                      [(> diode 41) (- diode 21)]
-                      [true diode])]
          [net-col (if left? col (- col 1))]
          [diode-net `(net ,(+ 16 diode)
                       ,(string->symbol (format "N-diode-~s" diode)))]
@@ -201,11 +198,6 @@
                 (* hypotenuse (sin Θ′)))]
          [label (format "D~a:~a" col row)]
          [diode (+ row (* col 4))]
-         ;; if we try to number nets linearly, kicad segfaults; woo!
-         ;; so we re-use the nets we skipped with the missing col 5/6 diodes
-         [diode (cond [(> diode 44) (- diode 20)]
-                      [(> diode 41) (- diode 21)]
-                      [true diode])]
          [net-row (cond [(= col 5) 2]
                         [(= col 6) 3]
                         [true row])])
