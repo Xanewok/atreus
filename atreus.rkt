@@ -170,7 +170,7 @@
          [x′ (+ (if left? x-offset 5) (* hypotenuse (cos Θ′)))]
          [y′ (+ (if left? y-offset (+ y-offset 42.885)) (* hypotenuse (sin Θ′)))]
          [label (format "SW~a:~a" col row)]
-         [diode (+ row (* col 4))]
+         [diode (+ row (* col rows))]
          [net-col (if left? col (- col 1))]
          [diode-net `(net ,(+ 16 diode)
                       ,(string->symbol (format "N-diode-~s" diode)))]
@@ -197,7 +197,7 @@
          [y′ (+ (if left? y-offset (+ y-offset 42.885))
                 (* hypotenuse (sin Θ′)))]
          [label (format "D~a:~a" col row)]
-         [diode (+ row (* col 4))]
+         [diode (+ row (* col rows))]
          [net-row (cond [(= col 5) 2]
                         [(= col 6) 3]
                         [true row])])
