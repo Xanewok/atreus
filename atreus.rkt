@@ -126,6 +126,15 @@
     (pad GND thru_hole circle (at 6.35 -6.35 270) (size 1.7526 1.7526)
          (drill 1.0922) (layers *.Cu *.SilkS *.Mask) (net 0 ""))))
 
+(define cols-net-count (+
+     (*
+          2 ; 2 halves
+          (- (/ cols 2) 1)) ; full size column count in a half
+     1 ; middle switches net column
+     ))
+(define net-count (+
+     1 ; base net
+     (+ rows cols-net-count)))
 (define nets
   `((net 0 "")
     (net 1 N-row-0)
@@ -146,7 +155,7 @@
     ; NOTE: For simplicity we define nets for the entire matrix, even if a
     ; column might not have all the keys (the thumb ones)
     ,@(for/list ([s (in-range (* rows cols))])
-        (list 'net (+ 16 s) (string->symbol (format "N-diode-~s" s))))))
+        (list 'net (+ net-count s) (string->symbol (format "N-diode-~s" s))))))
 
 (define (net-class nets)
   (append '(net_class Default "This is the default net class."
@@ -172,7 +181,7 @@
          [label (format "SW~a:~a" col row)]
          [diode (+ row (* col rows))]
          [net-col (if left? col (- col 1))]
-         [diode-net `(net ,(+ 16 diode)
+         [diode-net `(net ,(+ net-count diode)
                       ,(string->symbol (format "N-diode-~s" diode)))]
          [column-net `(net ,(+ net-col 5)
                        ,(string->symbol (format "N-col-~s" net-col)))]
@@ -202,7 +211,7 @@
                         [(= col 6) 3]
                         [true row])])
     (diode-module x′ y′ rotation label
-                  `(net ,(+ 16 diode)
+                  `(net ,(+ net-count diode)
                     ,(string->symbol (format "N-diode-~s" diode)))
                   `(net ,(+ net-row 1)
                     ,(string->symbol (format "N-row-~s" net-row))))))
