@@ -161,7 +161,7 @@
 
 (define (switch row col)
   (let* ([left? (< col 6)]
-         [rotation (if left? -10 10)]
+         [rotation (if left? (- angle) angle)]
          [x (* (+ 1 col) spacing)]
          [y (+ (list-ref column-offsets col) (* spacing row))]
          [hypotenuse (sqrt (+ (* x x) (* y y)))]
@@ -177,8 +177,8 @@
          [column-net `(net ,(+ net-col 5)
                        ,(string->symbol (format "N-col-~s" net-col)))]
          ;; rotate middle keys additional 90° after calculating position
-         [rotation (cond [(= 5 col) 80]
-                         [(= 6 col) 280]
+         [rotation (cond [(= 5 col) (- 90 angle)]
+                         [(= 6 col) (- 360 (- 90 angle))]
                          [true rotation])])
     (switch-module x′ y′ rotation label
                    (if left? diode-net column-net)
@@ -186,7 +186,7 @@
 
 (define (diode row col)
   (let* ([left? (< col 6)]
-         [rotation (if left? -10 10)]
+         [rotation (if left? (- angle) angle)]
          [x (* (+ 1 col) spacing)]
          [y (+ (list-ref column-offsets col) (* spacing row))]
          [hypotenuse (sqrt (+ (* x x) (* y y)))]
